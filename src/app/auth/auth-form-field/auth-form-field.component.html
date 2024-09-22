@@ -2,7 +2,11 @@
   <label [for]="fieldId">{{ label }}</label>
   <div class="input-icon">
     <i [class]="iconClass"></i>
-    <input [type]="type" [formControl]="control" [placeholder]="placeholder" [id]="fieldId" class="form-field-input"/>
+    <input [type]="type" [formControl]="control" [placeholder]="placeholder" [id]="fieldId" class="form-field-input"
+           [ngClass]="{'error-border': isInvalid()}"/>
+  </div>
+  <div *ngIf="isInvalid()" class="error-message">
+    {{ getErrorMessage() }}
   </div>
 </div>
 
