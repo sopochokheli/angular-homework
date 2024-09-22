@@ -3,6 +3,8 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {IRegisterForm} from "./register-form";
 import {NgOptimizedImage} from "@angular/common";
 import {AuthFormFieldComponent} from "../auth-form-field/auth-form-field.component";
+import {AuthButtonFieldComponent} from "../auth-button-field/auth-button-field.component";
+import {CompanyLogoComponent} from "../company-logo/company-logo.component";
 
 @Component({
   selector: 'app-register',
@@ -10,7 +12,9 @@ import {AuthFormFieldComponent} from "../auth-form-field/auth-form-field.compone
   imports: [
     ReactiveFormsModule,
     NgOptimizedImage,
-    AuthFormFieldComponent
+    AuthFormFieldComponent,
+    AuthButtonFieldComponent,
+    CompanyLogoComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'

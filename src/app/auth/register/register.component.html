@@ -1,23 +1,11 @@
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div class ="form-section">
-    <div class="logo-container">
-      <div class="logo"></div>
-    </div>
-
+    <app-company-logo></app-company-logo>
     <app-auth-form-field
       iconClass="fas fa-user"
       type="text"
       placeholder="მომხმარებელი"
       fieldId="username"
       [control]="registerForm.controls['username']">
-    </app-auth-form-field>
-
-    <app-auth-form-field
-      iconClass="fas fa-id-badge"
-      type="text"
-      placeholder="სახელი"
-      fieldId="name"
-      [control]="registerForm.controls['name']">
     </app-auth-form-field>
 
     <app-auth-form-field
@@ -44,13 +32,11 @@
       [control]="registerForm.controls['confirmPassword']">
     </app-auth-form-field>
 
-    <div class="form-group-button">
-      <a href="/auth" class="login-link">შესვლა</a>
-
-      <button type="submit" [disabled]="registerForm.invalid" class="btn-submit">
-        <i class="fas fa-user-plus"></i>
-        რეგისტრაცია
-      </button>
-    </div>
-  </div>
+   <app-auth-button-field
+    href="/auth"
+    hrefText="შესვლა"
+    [disabled]="registerForm.invalid"
+    submitText="რეგისტრაცია"
+    iconClass="fas fa-user-plus">
+   </app-auth-button-field>
 </form>
