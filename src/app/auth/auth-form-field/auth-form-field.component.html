@@ -1,9 +1,12 @@
-<div class="form-field-container">
+<div class="form-field-container" [ngClass]="{'has-error': isInvalid()}">
   <label [for]="fieldId">{{ label }}</label>
   <div class="input-icon">
     <i [class]="iconClass"></i>
     <input [type]="type" [formControl]="control" [placeholder]="placeholder" [id]="fieldId" class="form-field-input"
-           [ngClass]="{'error-border': isInvalid()}"/>
+           [ngClass]="{
+           'error-border': isInvalid(),
+           'normal-border': !isInvalid()
+            }"/>
   </div>
   <div *ngIf="isInvalid()" class="error-message">
     {{ getErrorMessage() }}

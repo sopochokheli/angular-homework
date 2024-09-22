@@ -35,7 +35,11 @@
   border-color: red !important;
 }
 
-.error-message {
+.normal-border {
+  border-color: #ccc;
+}
+
+.has-error .error-message {
   color: red;
   font-size: 12px;
   margin-top: 5px;
