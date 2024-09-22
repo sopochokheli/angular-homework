@@ -1,0 +1,28 @@
+<header class="main-header">
+  <div class="logo">
+    <img src="assets/bank-logo-v2.png" alt="Company Logo">
+  </div>
+
+  <div class="header-icons">
+    <!-- Search Button and Input -->
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" class="search-input" placeholder="Search..." />
+        <button class="icon-button search-btn" (click)="toggleSearch()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Other Header Buttons -->
+    <button class="icon-button" (click)="onLanguageChange()">
+      <i class="fas fa-sign-language"></i>
+    </button>
+    <button class="icon-button" (click)="onNotificationClick()">
+      <i class="fas fa-bell"></i>
+    </button>
+    <button class="icon-button" (click)="onProfileClick()">
+      <i class="fas fa-user"></i>
+    </button>
+  </div>
+</header>
