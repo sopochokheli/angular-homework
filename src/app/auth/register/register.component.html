@@ -1,0 +1,92 @@
+<div class="register-container">
+  <div  class="photo-section"></div>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <!-- Company Logo -->
+  <div class ="form-section">
+  <div class="logo-container">
+    <div class="logo"></div>
+  </div>
+
+  <div class="form-group">
+    <label for="username"></label>
+    <div class="input-icon">
+      <i class="fas fa-user"></i> <!-- Username Icon -->
+      <input
+        id="username"
+        formControlName="username"
+        type="text"
+        placeholder="მომხმარებელი"
+        class="form-control"
+      />
+    </div>
+    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+      <small *ngIf="registerForm.get('username')?.hasError('required')">Username is required.</small>
+      <small *ngIf="registerForm.get('username')?.hasError('minlength')">Username must be at least 3 characters long.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="name"></label>
+    <div class="input-icon">
+      <i class="fas fa-id-badge"></i> <!-- Name Icon -->
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+        placeholder="სახელი"
+        class="form-control"
+      />
+    </div>
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('name')?.touched">
+      <small *ngIf="registerForm.get('name')?.hasError('required')">Name is required.</small>
+      <small *ngIf="registerForm.get('name')?.hasError('name')">Enter a valid name.</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password"></label>
+    <div class="input-icon">
+      <i class="fas fa-lock"></i> <!-- Password Icon -->
+      <input
+        id="password"
+        formControlName="password"
+        type="password"
+        placeholder="პაროლი"
+        class="form-control"
+      />
+    </div>
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+      <small *ngIf="registerForm.get('password')?.hasError('required')">Password is required.</small>
+      <small *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters long.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="confirmPassword"></label>
+    <div class="input-icon">
+      <i class="fas fa-lock"></i> <!-- Confirm Password Icon -->
+      <input
+        id="confirmPassword"
+        formControlName="confirmPassword"
+        type="password"
+        placeholder="განმეორებითი პაროლი"
+        class="form-control"
+      />
+    </div>
+    <div *ngIf="registerForm.hasError('notMatching') && registerForm.get('confirmPassword')?.touched">
+      <small>Passwords do not match.</small>
+    </div>
+  </div>
+
+  <div class="form-group-button">
+    <!-- შესვლა Link on the left -->
+    <a href="/login" class="login-link">შესვლა</a>
+
+    <button type="submit" [disabled]="registerForm.invalid" class="btn-submit">
+      <i class="fas fa-user-plus"></i> <!-- User Plus Icon for register -->
+      რეგისტრაცია
+    </button>
+  </div>
+  </div>
+</form>
+</div>
