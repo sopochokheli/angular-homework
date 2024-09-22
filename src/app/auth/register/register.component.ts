@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {IRegisterForm} from "./register-form";
 import {NgOptimizedImage} from "@angular/common";
+import {AuthFormFieldComponent} from "../auth-form-field/auth-form-field.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    AuthFormFieldComponent
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
