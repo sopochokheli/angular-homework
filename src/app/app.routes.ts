@@ -10,6 +10,8 @@ import {KrnicpComponent} from "./shell/modules/krn/krnicp/krnicp.component";
 import {AccountsComponent} from "./shell/modules/krn/accounts/accounts.component";
 import {KrnHeaderComponent} from "./shell/modules/krn/krn-header/krn-header.component";
 import {CreateComponent} from "./shell/modules/krn/accounts/create/create.component";
+import {OperationsComponent} from "./shell/modules/krn/operations/operations.component";
+import {Pmd311Component} from "./shell/modules/pmd/pmd311/pmd311.component";
 
 export const routes: Routes = [ {
   path: 'auth',
@@ -31,6 +33,10 @@ export const routes: Routes = [ {
           {
             path: '',
             component: AccountsComponent
+          },
+          {
+            path: 'create',
+            component: CreateComponent
           }
         ]
       },
@@ -40,12 +46,30 @@ export const routes: Routes = [ {
         children: [
           {
             path: '',
-            component: CreateComponent
+            component: OperationsComponent
           }
-      ]
+        ]
       }
     ]
   },
+
+  {
+    path: 'pmd',
+    component: ShellComponent,
+    children: [
+      {
+        path: '',
+        component: KrnHeaderComponent,
+        children: [
+          {
+            path: 'pmd311',
+            component: Pmd311Component
+          }
+          ]
+      }
+      ]
+  },
+
   { path: '', redirectTo: '/auth', pathMatch: 'full' }, // Default to login
   { path: '**', redirectTo: '/auth' }, // Wildcard route for handling 404s
 ];

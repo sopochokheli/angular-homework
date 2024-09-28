@@ -1,0 +1,12 @@
+/* Default style for trash icon */
+.delete-icon {
+  color: black; /* Default color */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+/* Hover style for trash icon */
+.delete-icon:hover {
+  color: red; /* Change color to red on hover */
+  transform: scale(1.2); /* Slightly increase size on hover */
+}

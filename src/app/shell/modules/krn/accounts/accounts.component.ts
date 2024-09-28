@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {NgForOf} from "@angular/common";
+import {Router} from "@angular/router";
 
 interface Account {
   name: string;
@@ -24,6 +25,7 @@ export class AccountsComponent {
     { name: 'Test 4 Tester', accountName: 'ახალი ანგარიში 2', amount: 150 }
   ];
 
+  constructor(private router: Router) {}
   onDelete(account: Account) {
     console.log('Delete clicked for:', account);
     // Implement deletion logic
@@ -31,6 +33,7 @@ export class AccountsComponent {
 
   addAccount() {
     console.log('Add account clicked');
+    this.router.navigate(['/krn/accounts/create']);
     // Implement add logic
   }
 }

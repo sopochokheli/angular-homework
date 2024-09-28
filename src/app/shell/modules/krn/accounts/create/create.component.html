@@ -1,1 +1,27 @@
-<p>create works!</p>
+<div class="ui segment">
+  <h3 class="ui header">ანგარიშის შექმნა</h3>
+
+  <div class="ui grid">
+    <div class="six wide column">
+      <form class="ui form" [formGroup]="createAccountForm" (ngSubmit)="createAccount()">
+        <div class="field">
+          <label>ანგარიშის მფლობელი</label>
+          <input type="text" placeholder="მფლობელის სახელი" formControlName="name">
+          <div *ngIf="createAccountForm.get('name').invalid && createAccountForm.get('name').touched" class="ui red message">
+            სახელი სავალდებულოა
+          </div>
+        </div>
+        <div class="field">
+          <label>თანხა</label>
+          <input type="number" placeholder="თანხა" formControlName="amount">
+          <div *ngIf="createAccountForm.get('amount').invalid && createAccountForm.get('amount').touched" class="ui red message">
+            გთხოვთ შეიყვანოთ სწორი თანხა
+          </div>
+        </div>
+        <button class="ui blue icon button" [disabled]="createAccountForm.invalid">
+          <i class="save icon"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
