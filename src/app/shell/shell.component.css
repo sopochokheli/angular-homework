@@ -37,6 +37,7 @@
   .module-content {
     flex-grow: 1;
     padding: 20px;
+    margin-top: 1rem;
     overflow-y: auto; /* Scrollable content if it overflows */
     background-color: #f9f9f9;
     height: calc(100vh - 60px); /* Full height minus the header */
