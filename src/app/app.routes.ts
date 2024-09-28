@@ -12,6 +12,7 @@ import {KrnHeaderComponent} from "./shell/modules/krn/krn-header/krn-header.comp
 import {CreateComponent} from "./shell/modules/krn/accounts/create/create.component";
 import {OperationsComponent} from "./shell/modules/krn/operations/operations.component";
 import {Pmd311Component} from "./shell/modules/pmd/pmd311/pmd311.component";
+import {Bpm001Component} from "./shell/modules/bpm/bpm001/bpm001.component";
 
 export const routes: Routes = [ {
   path: 'auth',
@@ -69,6 +70,16 @@ export const routes: Routes = [ {
       }
       ]
   },
+
+  { path: 'bpm', component: ShellComponent,
+  children: [ {
+    path: 'bpm000',
+    component: Bpm000Component
+  },
+    {
+      path: 'bpm001',
+      component: Bpm001Component
+    }]},
 
   { path: '', redirectTo: '/auth', pathMatch: 'full' }, // Default to login
   { path: '**', redirectTo: '/auth' }, // Wildcard route for handling 404s

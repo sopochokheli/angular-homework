@@ -1,0 +1,24 @@
+.ui.red.message {
+  margin-top: 5px;
+}
+
+.ui.form .field {
+  margin-bottom: 15px;
+}
+
+.ui.celled.table {
+  margin-top: 20px;
+}
+
+
+/* Make the cursor a pointer when hovering over table rows */
+.ui.celled.table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Change background color and add shadow on hover */
+.ui.celled.table tbody tr:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
