@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-krn-header',
@@ -14,4 +14,10 @@ import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 })
 export class KrnHeaderComponent {
 
+  constructor(private router: Router) {
+  }
+  onLeaveClick() {
+
+    this.router.navigate(['/bpm/bpm000']);
+  }
 }
