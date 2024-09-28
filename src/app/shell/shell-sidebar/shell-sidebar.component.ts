@@ -1,9 +1,13 @@
 import {Component, Input} from '@angular/core';
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-shell-sidebar',
   standalone: true,
-  imports: [],
+    imports: [
+        RouterLink,
+        RouterLinkActive
+    ],
   templateUrl: './shell-sidebar.component.html',
   styleUrl: './shell-sidebar.component.css'
 })
