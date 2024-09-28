@@ -1,32 +1,55 @@
 <div class="ui segment">
   <h3 class="ui header">თანხის გადარიცხვა</h3>
 
-  <form class="ui form">
-    <div class="field">
-      <label>გადამზიდი ანგარიში</label>
-      <select class="ui dropdown">
-        <option value="">აირჩიეთ</option>
-        <option value="1">ანგარიში 1</option>
-        <option value="2">ანგარიში 2</option>
-      </select>
-    </div>
+  <div class="ui grid">
+    <div class="ten wide column">
+      <form class="ui form" [formGroup]="pmdForm" (ngSubmit)="onSubmit()">
 
-    <div class="field">
-      <label>მიმღები ანგარიში</label>
-      <select class="ui dropdown">
-        <option value="">აირჩიეთ</option>
-        <option value="1">ანგარიში 1</option>
-        <option value="2">ანგარიში 2</option>
-      </select>
-    </div>
+        <!-- Carrier Account Dropdown -->
+        <div class="field">
+          <label>გადამზიდი ანგარიში</label>
+          <select formControlName="carrierAccount" class="ui dropdown">
+            <option value="">აირჩიეთ</option>
+            <option *ngFor="let account of carrierAccounts" [value]="account.id">
+              {{ account.name }}
+            </option>
+          </select>
+          <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
+          <div *ngIf="pmdForm.get('carrierAccount')?.invalid && pmdForm.get('carrierAccount')?.touched" class="ui red message">
+            გთხოვთ აირჩიოთ გადამზიდი ანგარიში
+          </div>
+        </div>
 
-    <div class="field">
-      <label>თანხა</label>
-      <input type="number" placeholder="თანხა">
-    </div>
+        <!-- Receiver Account Dropdown -->
+        <div class="field">
+          <label>მიმღები ანგარიში</label>
+          <select formControlName="receiverAccount" class="ui dropdown">
+            <option value="">აირჩიეთ</option>
+            <option *ngFor="let account of receiverAccounts" [value]="account.id">
+              {{ account.name }}
+            </option>
+          </select>
+          <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
+          <div *ngIf="pmdForm.get('receiverAccount')?.invalid && pmdForm.get('receiverAccount')?.touched" class="ui red message">
+            გთხოვთ აირჩიოთ მიმღები ანგარიში
+          </div>
+        </div>
 
-    <button class="ui green icon button">
-      <i class="check icon"></i>
-    </button>
-  </form>
+        <!-- Amount Field -->
+        <div class="field">
+          <label>თანხა</label>
+          <input type="number" formControlName="amount" placeholder="თანხა">
+          <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
+          <div *ngIf="pmdForm.get('amount')?.invalid && pmdForm.get('amount')?.touched" class="ui red message">
+            გთხოვთ შეიყვანოთ სწორი თანხა
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="ui green icon button" [disabled]="pmdForm.invalid">
+          <i class="check icon"></i>
+        </button>
+      </form>
+    </div>
+  </div>
 </div>
