@@ -45,7 +45,6 @@ export class KrnHeaderComponent implements OnInit {
   }
 
   fetchClientDataFromService() {
-    // Fetch from API if not in localStorage
     this.clientsService.getClient(this.clientId ?? "").then(document => {
       this.clientName = document?.['firstName'] + ' ' + document?.['lastName'];
       this.plusPoints = document?.['plusPoints'];
@@ -61,7 +60,6 @@ export class KrnHeaderComponent implements OnInit {
 
 
   onLeaveClick() {
-    // Clear localStorage before leaving
     localStorage.removeItem('clientData');
     this.router.navigate(['/bpm/bpm000']);
   }

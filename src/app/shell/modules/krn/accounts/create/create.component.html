@@ -6,15 +6,15 @@
       <form class="ui form" [formGroup]="createAccountForm" (ngSubmit)="createAccount()">
         <div class="field">
           <label>ანგარიშის მფლობელი</label>
-          <input type="text" placeholder="მფლობელის სახელი" formControlName="name">
-          <div *ngIf="createAccountForm.get('name').invalid && createAccountForm.get('name').touched" class="ui red message">
+          <input type="text" placeholder="მფლობელის სახელი" formControlName="accountName">
+          <div *ngIf="createAccountForm.get('accountName')?.invalid && createAccountForm.get('accountName')?.touched" class="ui red message">
             სახელი სავალდებულოა
           </div>
         </div>
         <div class="field">
           <label>თანხა</label>
           <input type="number" placeholder="თანხა" formControlName="amount">
-          <div *ngIf="createAccountForm.get('amount').invalid && createAccountForm.get('amount').touched" class="ui red message">
+          <div *ngIf="createAccountForm.get('amount')?.invalid && createAccountForm.get('amount')?.touched" class="ui red message">
             გთხოვთ შეიყვანოთ სწორი თანხა
           </div>
         </div>
