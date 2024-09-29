@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -10,7 +10,9 @@ import {Router} from "@angular/router";
 })
 export class OperationsComponent {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
+
   goToPmd311() {
     this.router.navigate(['/pmd/pmd311']);
   }

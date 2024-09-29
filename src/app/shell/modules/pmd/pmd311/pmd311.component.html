@@ -15,7 +15,8 @@
             </option>
           </select>
           <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
-          <div *ngIf="pmdForm.get('carrierAccount')?.invalid && pmdForm.get('carrierAccount')?.touched" class="ui red message">
+          <div *ngIf="pmdForm.get('carrierAccount')?.invalid && pmdForm.get('carrierAccount')?.touched"
+               class="ui red message">
             გთხოვთ აირჩიოთ გადამზიდი ანგარიში
           </div>
         </div>
@@ -30,7 +31,8 @@
             </option>
           </select>
           <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
-          <div *ngIf="pmdForm.get('receiverAccount')?.invalid && pmdForm.get('receiverAccount')?.touched" class="ui red message">
+          <div *ngIf="pmdForm.get('receiverAccount')?.invalid && pmdForm.get('receiverAccount')?.touched"
+               class="ui red message">
             გთხოვთ აირჩიოთ მიმღები ანგარიში
           </div>
         </div>

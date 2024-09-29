@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 
@@ -20,7 +20,9 @@ export class Bpm000Component {
   filteredClients: any[] = []; // Filtered clients to display in the table
   searchPerformed = false; // Flag to check if search was performed
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
+
   ngOnInit(): void {
     // Initialize the reactive form
     this.clientSearchForm = new FormGroup({
@@ -31,18 +33,18 @@ export class Bpm000Component {
 
     // Initialize client data (mock data)
     this.clients = [
-      { firstName: 'ლევან', lastName: 'ჭანტურია', clientUniqueId: 17 },
-      { firstName: 'Test', lastName: 'Tester', clientUniqueId: 21 },
-      { firstName: 'Test 2', lastName: 'Tester', clientUniqueId: 20 },
-      { firstName: 'Test 5', lastName: 'Tester', clientUniqueId: 1 },
-      { firstName: 'Test 3', lastName: 'Tester', clientUniqueId: 19 },
-      { firstName: 'Test 4', lastName: 'Tester', clientUniqueId: 18 }
+      {firstName: 'ლევან', lastName: 'ჭანტურია', clientUniqueId: 17},
+      {firstName: 'Test', lastName: 'Tester', clientUniqueId: 21},
+      {firstName: 'Test 2', lastName: 'Tester', clientUniqueId: 20},
+      {firstName: 'Test 5', lastName: 'Tester', clientUniqueId: 1},
+      {firstName: 'Test 3', lastName: 'Tester', clientUniqueId: 19},
+      {firstName: 'Test 4', lastName: 'Tester', clientUniqueId: 18}
     ];
   }
 
   // Method to handle form submission and filter clients
   onSubmit() {
-    const { firstName, lastName, clientUniqueId } = this.clientSearchForm.value;
+    const {firstName, lastName, clientUniqueId} = this.clientSearchForm.value;
 
     // Set searchPerformed to true when form is submitted
     this.searchPerformed = true;
@@ -62,7 +64,7 @@ export class Bpm000Component {
   }
 
   onClientRowClick(client: any) {
-    this.router.navigate(['/krn/krnicp'], { queryParams: { clientId: client.clientUniqueId } });
+    this.router.navigate(['/krn/krnicp'], {queryParams: {clientId: client.clientUniqueId}});
 
   }
 }

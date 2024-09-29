@@ -1,44 +1,47 @@
 <div class="ui segment">
   <h2 class="ui header">კლიენტის რეგისტრაცია</h2>
   <div class="ui segment">
-  <div class="ui grid">
-    <div class="sixteen wide column">
-      <!-- Bind the form to the FormGroup (Reactive Form) -->
-      <form class="ui form" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+    <div class="ui grid">
+      <div class="sixteen wide column">
+        <!-- Bind the form to the FormGroup (Reactive Form) -->
+        <form class="ui form" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
-        <!-- First Name Field (სახელი) -->
-        <div class="field">
-          <label>სახელი</label>
-          <input type="text" formControlName="firstName" placeholder="სახელი">
-          <div *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched" class="ui red message">
-            გთხოვთ შეიყვანოთ სახელი
+          <!-- First Name Field (სახელი) -->
+          <div class="field">
+            <label>სახელი</label>
+            <input type="text" formControlName="firstName" placeholder="სახელი">
+            <div *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched"
+                 class="ui red message">
+              გთხოვთ შეიყვანოთ სახელი
+            </div>
           </div>
-        </div>
 
-        <!-- Last Name Field (გვარი) -->
-        <div class="field">
-          <label>გვარი</label>
-          <input type="text" formControlName="lastName" placeholder="გვარი">
-          <div *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched" class="ui red message">
-            გთხოვთ შეიყვანოთ გვარი
+          <!-- Last Name Field (გვარი) -->
+          <div class="field">
+            <label>გვარი</label>
+            <input type="text" formControlName="lastName" placeholder="გვარი">
+            <div *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched"
+                 class="ui red message">
+              გთხოვთ შეიყვანოთ გვარი
+            </div>
           </div>
-        </div>
 
-        <!-- Plus Points Field (Plus ქულები) -->
-        <div class="field">
-          <label>Plus ქულები</label>
-          <input type="number" formControlName="plusPoints" placeholder="Plus ქულები">
-          <div *ngIf="clientForm.get('plusPoints')?.invalid && clientForm.get('plusPoints')?.touched" class="ui red message">
-            გთხოვთ შეიყვანოთ სწორი ქულა
+          <!-- Plus Points Field (Plus ქულები) -->
+          <div class="field">
+            <label>Plus ქულები</label>
+            <input type="number" formControlName="plusPoints" placeholder="Plus ქულები">
+            <div *ngIf="clientForm.get('plusPoints')?.invalid && clientForm.get('plusPoints')?.touched"
+                 class="ui red message">
+              გთხოვთ შეიყვანოთ სწორი ქულა
+            </div>
           </div>
-        </div>
 
-        <!-- Submit Button -->
-        <button class="ui blue icon button" [disabled]="clientForm.invalid">
-          <i class="save icon"></i>
-        </button>
-      </form>
+          <!-- Submit Button -->
+          <button class="ui blue icon button" [disabled]="clientForm.invalid">
+            <i class="save icon"></i>
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
   </div>
 </div>

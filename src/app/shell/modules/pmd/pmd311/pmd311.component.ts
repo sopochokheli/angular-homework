@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 
@@ -30,14 +30,14 @@ export class Pmd311Component {
 
     // Populate the carrier accounts (dropdown options)
     this.carrierAccounts = [
-      { id: 1, name: 'ანგარიში 1' },
-      { id: 2, name: 'ანგარიში 2' }
+      {id: 1, name: 'ანგარიში 1'},
+      {id: 2, name: 'ანგარიში 2'}
     ];
 
     // Populate the receiver accounts (dropdown options)
     this.receiverAccounts = [
-      { id: 1, name: 'მიმღები ანგარიში 1' },
-      { id: 2, name: 'მიმღები ანგარიში 2' }
+      {id: 1, name: 'მიმღები ანგარიში 1'},
+      {id: 2, name: 'მიმღები ანგარიში 2'}
     ];
   }
 
