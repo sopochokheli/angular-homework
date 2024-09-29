@@ -25,15 +25,48 @@ export class KrnHeaderComponent implements OnInit {
     this.route.queryParamMap.subscribe(params => {
       this.clientId = params.get('clientId');
       console.log('Client ID received:', this.clientId);
-      this.clientsService.getClient(this.clientId ?? "").then(document => {
-        this.clientName = document?.['firstName'] + ' ' +  document?.['lastName'];
-        this.plusPoints = document?.['plusPoints'];
-      });
+
+      // Check if the data is already in localStorage
+      const storedClientData = localStorage.getItem('clientData');
+
+      if (storedClientData) {
+        const clientData = JSON.parse(storedClientData);
+
+        if (clientData.clientId == this.clientId) {
+          this.clientName = clientData.clientName;
+          this.plusPoints = clientData.plusPoints;
+        } else {
+          this.fetchClientDataFromService()
+        }
+      } else {
+        this.fetchClientDataFromService();
+      }
     });
   }
 
-  onLeaveClick() {
+  fetchClientDataFromService() {
+    // Fetch from API if not in localStorage
+    this.clientsService.getClient(this.clientId ?? "").then(document => {
+      this.clientName = document?.['firstName'] + ' ' + document?.['lastName'];
+      this.plusPoints = document?.['plusPoints'];
 
+      // Store in localStorage
+      localStorage.setItem('clientData', JSON.stringify({
+        clientId: this.clientId,
+        clientName: this.clientName,
+        plusPoints: this.plusPoints
+      }));
+    });
+  }
+
+
+  onLeaveClick() {
+    // Clear localStorage before leaving
+    localStorage.removeItem('clientData');
     this.router.navigate(['/bpm/bpm000']);
+  }
+
+  navigateWithParams(route: string) {
+    this.router.navigate([route], {queryParamsHandling: 'preserve'});
   }
 }

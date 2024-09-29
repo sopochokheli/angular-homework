@@ -37,11 +37,12 @@
   <!-- Footer Menu Section -->
   <div class="ui segment">
     <div class="ui three item menu">
-      <a class="item" routerLink="/krn/krnicp" routerLinkActive="active">მთავარი</a>
-      <a class="item" routerLink="/krn/accounts" routerLinkActive="active">ანგარიშები</a>
-      <a class="item" routerLink="/krn/operations" routerLinkActive="active">ოპერაციები</a>
+      <a class="item" (click)="navigateWithParams('/krn/krnicp')" routerLinkActive="active">მთავარი</a>
+      <a class="item" (click)="navigateWithParams('/krn/accounts')" routerLinkActive="active">ანგარიშები</a>
+      <a class="item" (click)="navigateWithParams('/krn/operations')" routerLinkActive="active">ოპერაციები</a>
     </div>
   </div>
+
 
   <router-outlet></router-outlet>
 </div>
