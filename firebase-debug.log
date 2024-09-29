@@ -1,0 +1,42 @@
+[debug] [2024-09-29T10:42:05.086Z] ----------------------------------------------------------------------
+[debug] [2024-09-29T10:42:05.089Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2024-09-29T10:42:05.089Z] CLI Version:   13.20.1
+[debug] [2024-09-29T10:42:05.089Z] Platform:      win32
+[debug] [2024-09-29T10:42:05.089Z] Node Version:  v20.15.1
+[debug] [2024-09-29T10:42:05.089Z] Time:          Sun Sep 29 2024 14:42:05 GMT+0400 (Georgia Standard Time)
+[debug] [2024-09-29T10:42:05.090Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-29T10:42:05.101Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=418807332&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2024-09-29T10:42:20.647Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2024-09-29T10:42:20.647Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2024-09-29T10:44:38.133Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2024-09-29T10:44:38.133Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2024-09-29T10:45:20.044Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2024-09-29T10:45:20.044Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2024-09-29T10:45:55.481Z] ----------------------------------------------------------------------
+[debug] [2024-09-29T10:45:55.484Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2024-09-29T10:45:55.484Z] CLI Version:   13.20.1
+[debug] [2024-09-29T10:45:55.484Z] Platform:      win32
+[debug] [2024-09-29T10:45:55.484Z] Node Version:  v20.15.1
+[debug] [2024-09-29T10:45:55.484Z] Time:          Sun Sep 29 2024 14:45:55 GMT+0400 (Georgia Standard Time)
+[debug] [2024-09-29T10:45:55.484Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-29T10:45:55.488Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=733635371&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2024-09-29T10:46:04.645Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2024-09-29T10:46:04.645Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2024-09-29T10:46:32.502Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2024-09-29T10:46:32.503Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
