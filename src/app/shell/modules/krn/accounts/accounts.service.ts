@@ -1,5 +1,14 @@
 import {Injectable} from '@angular/core';
-import {addDoc, collection, CollectionReference, Firestore, getDocs, query, where} from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  CollectionReference,
+  deleteDoc, doc,
+  Firestore,
+  getDocs,
+  query,
+  where
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +45,17 @@ export class AccountsService {
     } catch (error) {
       console.error('Error fetching accounts:', error);
       return [];
+    }
+  }
+
+  async deleteAccount(accountId: string): Promise<void> {
+    try {
+      const accountRef = doc(this.firestore, `accounts/${accountId}`);
+      await deleteDoc(accountRef);
+      console.log(`Account with ID ${accountId} has been deleted.`);
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      throw error; // Rethrow or handle the error as needed
     }
   }
 }

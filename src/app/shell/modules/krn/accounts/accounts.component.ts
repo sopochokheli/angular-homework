@@ -50,7 +50,18 @@ export class AccountsComponent implements OnInit {
 
   onDelete(account: Account) {
     console.log('Delete clicked for:', account);
-    // Implement deletion logic in AccountsService, e.g., this.accountsService.deleteAccount(account.id)
+    if (confirm('Are you sure you want to delete this account?')) {
+      try {
+
+        this.accountsService.deleteAccount(account.id).then(r => {
+          this.accounts = this.accounts.filter(acc => acc.id !== account.id);
+          console.log('Account deleted successfully.');
+        });
+
+      } catch (error) {
+        console.error('Error deleting account:', error);
+      }
+    }
   }
 
   addAccount() {
