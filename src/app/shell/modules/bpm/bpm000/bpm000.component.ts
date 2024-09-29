@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
+import {ClientsService} from "../clients.service";
 
 @Component({
   selector: 'app-bpm000',
@@ -14,13 +15,13 @@ import {Router} from "@angular/router";
   templateUrl: './bpm000.component.html',
   styleUrl: './bpm000.component.css'
 })
-export class Bpm000Component {
+export class Bpm000Component implements OnInit {
   clientSearchForm: FormGroup = new FormGroup({});
   clients: any[] = []; // Full list of clients
   filteredClients: any[] = []; // Filtered clients to display in the table
   searchPerformed = false; // Flag to check if search was performed
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private clientsService: ClientsService) {
   }
 
   ngOnInit(): void {
@@ -28,35 +29,23 @@ export class Bpm000Component {
     this.clientSearchForm = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
-      clientUniqueId: new FormControl('')
+      clientId: new FormControl('')
     });
-
-    // Initialize client data (mock data)
-    this.clients = [
-      {firstName: 'ლევან', lastName: 'ჭანტურია', clientUniqueId: 17},
-      {firstName: 'Test', lastName: 'Tester', clientUniqueId: 21},
-      {firstName: 'Test 2', lastName: 'Tester', clientUniqueId: 20},
-      {firstName: 'Test 5', lastName: 'Tester', clientUniqueId: 1},
-      {firstName: 'Test 3', lastName: 'Tester', clientUniqueId: 19},
-      {firstName: 'Test 4', lastName: 'Tester', clientUniqueId: 18}
-    ];
   }
 
-  // Method to handle form submission and filter clients
-  onSubmit() {
-    const {firstName, lastName, clientUniqueId} = this.clientSearchForm.value;
+  async onSubmit() {
+    const {firstName, lastName, clientId} = this.clientSearchForm.value;
 
     // Set searchPerformed to true when form is submitted
     this.searchPerformed = true;
 
-    // Filter the clients based on the search criteria
-    this.filteredClients = this.clients.filter(client => {
-      return (
-        (!firstName || client.firstName.toLowerCase().includes(firstName.toLowerCase())) &&
-        (!lastName || client.lastName.toLowerCase().includes(lastName.toLowerCase())) &&
-        (!clientUniqueId || client.clientUniqueId.toString() === clientUniqueId)
-      );
-    });
+    try {
+      this.filteredClients = await this.clientsService.getClients(clientId, firstName, lastName);
+      console.log('filtered clients', this.filteredClients);
+    } catch (error) {
+      console.error('Error fetching clients:', error);
+      this.filteredClients = []; // Clear filtered clients on error
+    }
   }
 
   goToAddClient() {
@@ -64,7 +53,7 @@ export class Bpm000Component {
   }
 
   onClientRowClick(client: any) {
-    this.router.navigate(['/krn/krnicp'], {queryParams: {clientId: client.clientUniqueId}});
-
+    console.log(client);
+    this.router.navigate(['/krn/krnicp'], {queryParams: {clientId: client.clientId}});
   }
 }

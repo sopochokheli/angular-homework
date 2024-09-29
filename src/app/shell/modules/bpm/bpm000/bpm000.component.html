@@ -22,7 +22,7 @@
           <!-- Client Unique ID Field (კლიენტის უნიკალური ID) -->
           <div class="field">
             <label>კლიენტის უნიკალური ID</label>
-            <input type="text" formControlName="clientUniqueId" placeholder="კლიენტის უნიკალური ID">
+            <input type="text" formControlName="clientId" placeholder="კლიენტის უნიკალური ID">
           </div>
         </div>
 
@@ -61,7 +61,7 @@
       <tr *ngFor="let client of filteredClients" (click)="onClientRowClick(client)">
         <td>{{ client.firstName }}</td>
         <td>{{ client.lastName }}</td>
-        <td>{{ client.clientUniqueId }}</td>
+        <td>{{ client.clientId }}</td>
       </tr>
       </tbody>
     </table>

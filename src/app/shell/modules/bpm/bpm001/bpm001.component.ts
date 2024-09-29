@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from "@angular/common";
+import {ClientsService} from "../clients.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-bpm001',
@@ -12,7 +14,7 @@ import {NgIf} from "@angular/common";
   templateUrl: './bpm001.component.html',
   styleUrl: './bpm001.component.css'
 })
-export class Bpm001Component {
+export class Bpm001Component implements OnInit {
   clientForm: FormGroup = new FormGroup({});
 
   ngOnInit(): void {
@@ -24,12 +26,22 @@ export class Bpm001Component {
     });
   }
 
+  constructor(private clientService: ClientsService, private router: Router) {
+  }
+
   // Method to handle form submission
   onSubmit() {
     if (this.clientForm.valid) {
-      const clientData = this.clientForm.value;
-      console.log('Form submitted:', clientData);
-      // Logic to handle form submission, like saving the data or making an API call
+      const {firstName, lastName, plusPoints} = this.clientForm.value;
+
+      this.clientService.addClients(firstName!, lastName!, plusPoints!).then(clientId => {
+
+        console.log('Client added successfully with ID:', clientId);
+        this.router.navigate(['/krn/krnicp'], { queryParams: { clientId: clientId } });
+
+      }).catch(error => {
+        console.error('Error adding client:', error);
+      });
     } else {
       console.log('Form is invalid');
     }
