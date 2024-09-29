@@ -15,14 +15,18 @@ export class AuthService {
     try {
       const result = await signInWithEmailAndPassword(this.auth, email, password);
       console.log('User signed in:', result);
-      this.router.navigate(['/dashboard']);
+
+      const token = await result.user.getIdToken();
+      localStorage.setItem('authToken', token);
+
+      this.router.navigate(['/bpm/bpm000']);
     } catch (error) {
       console.error('Sign in error:', error);
     }
   }
 
   // Sign Up with email and password
-  async signUp(email: string, password: string, username: string) {
+  async signUp(email: string, password: string, name: string) {
     try {
       console.log('User signup:', email,  password);
       const result = await createUserWithEmailAndPassword(this.auth, email, password);
@@ -30,11 +34,14 @@ export class AuthService {
 
       // Save the username in Firestore under the user's UID
       await setDoc(doc(this.firestore, 'users', result.user.uid), {
-        username: username,
+        name: name,
         email: email,
       });
 
-      this.router.navigate(['/dashboard']);
+      const token = await result.user.getIdToken();
+      localStorage.setItem('authToken', token);
+
+      this.router.navigate(['/bpm/bpm000']);
     } catch (error) {
       console.error('Sign up error:', error);
     }
@@ -45,9 +52,16 @@ export class AuthService {
     try {
       await signOut(this.auth);
       console.log('User signed out');
-      this.router.navigate(['/login']);
+
+      localStorage.removeItem('authToken');
+
+      this.router.navigate(['/auth']);
     } catch (error) {
       console.error('Logout error:', error);
     }
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
   }
 }

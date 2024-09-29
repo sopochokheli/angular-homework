@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {AuthService} from "../../auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shell-header',
@@ -18,6 +20,9 @@ export class ShellHeaderComponent {
   searchQuery: any;
   showSearch: boolean = true;
 
+  constructor(private authService: AuthService, private router: Router) {
+  }
+
   onSearch() {
     // Implement search functionality
   }
@@ -30,8 +35,8 @@ export class ShellHeaderComponent {
     // Handle notification click
   }
 
-  onProfileClick() {
-    // Handle profile click
+  onLogOutClick() {
+    this.authService.logout();
   }
 
   toggleSearch() {
