@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {ActivatedRoute} from "@angular/router";
+import {AccountsService} from "../../krn/accounts/accounts.service";
 
 @Component({
   selector: 'app-pmd311',
@@ -13,40 +15,73 @@ import {NgForOf, NgIf} from "@angular/common";
   templateUrl: './pmd311.component.html',
   styleUrl: './pmd311.component.css'
 })
-export class Pmd311Component {
+export class Pmd311Component implements OnInit {
   pmdForm: FormGroup = new FormGroup({});
 
-  // Arrays to store dropdown options for carrier and receiver accounts
-  carrierAccounts: { id: number, name: string }[] = [];
-  receiverAccounts: { id: number, name: string }[] = [];
+  carrierAccounts: any[] = [];
+  receiverAccounts: any[] = [];
+  clientId: string | null = null;
+
+  constructor(
+    private accountsService: AccountsService,
+    private route: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
-    // Initialize the form controls inside FormGroup
     this.pmdForm = new FormGroup({
       carrierAccount: new FormControl('', Validators.required),
       receiverAccount: new FormControl('', Validators.required),
-      amount: new FormControl('', [Validators.required, Validators.min(1)]) // Amount should be positive
+      amount: new FormControl('', [Validators.required, Validators.min(1)])
     });
 
-    // Populate the carrier accounts (dropdown options)
-    this.carrierAccounts = [
-      {id: 1, name: 'ანგარიში 1'},
-      {id: 2, name: 'ანგარიში 2'}
-    ];
-
-    // Populate the receiver accounts (dropdown options)
-    this.receiverAccounts = [
-      {id: 1, name: 'მიმღები ანგარიში 1'},
-      {id: 2, name: 'მიმღები ანგარიში 2'}
-    ];
+    this.route.queryParamMap.subscribe(params => {
+      this.clientId = params.get('clientId');
+      this.refreshAccounts();
+    });
   }
 
-  // Method to handle form submission
+  private getCarrierAccounts(clientId: string): void {
+    this.accountsService.getAccounts(clientId).then(accounts => {
+      this.carrierAccounts = accounts;
+    }).catch(error => {
+      console.error('Error fetching carrier accounts:', error);
+    });
+  }
+
+  private getReceiverAccounts(clientId: string): void {
+    this.accountsService.getAllAccounts(clientId).then(accounts => {
+      this.receiverAccounts = accounts;
+    }).catch(error => {
+      console.error('Error fetching receiver accounts:', error);
+    });
+  }
+
   onSubmit() {
     if (this.pmdForm.valid) {
       const formData = this.pmdForm.value;
-      console.log('Form data submitted:', formData);
-      // Further logic for form submission can be added here
+      const selectedCarrierAccount = this.carrierAccounts.find(account => account.id === formData.carrierAccount);
+      const selectedReceiverAccount = this.receiverAccounts.find(account => account.id === formData.receiverAccount);
+      const transferAmount = formData.amount;
+
+      this.accountsService.transferFunds(selectedCarrierAccount, selectedReceiverAccount, transferAmount)
+        .then(() => {
+          console.log('Transfer completed successfully');
+          this.pmdForm.reset();
+          this.refreshAccounts();
+        })
+        .catch(error => {
+          console.error('Transfer failed:', error);
+        });
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+
+  private refreshAccounts(): void {
+    if (this.clientId) {
+      this.getCarrierAccounts(this.clientId);
+      this.getReceiverAccounts(this.clientId);
     }
   }
 }

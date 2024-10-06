@@ -38,6 +38,7 @@ export class KrnHeaderComponent implements OnInit {
           this.totalAmount = clientData.totalAmount;
         } else {
           this.fetchClientDataFromService();
+          this.fetchTotalAmount();
         }
       } else {
         this.fetchClientDataFromService();
@@ -50,6 +51,11 @@ export class KrnHeaderComponent implements OnInit {
       });
 
       this.accountsService.accountDeleted.subscribe((amount: number) => {
+        this.totalAmount -= amount;
+        this.updateLocalStorage();
+      });
+
+      this.accountsService.transferCompleted.subscribe((amount: number) => {
         this.totalAmount -= amount;
         this.updateLocalStorage();
       });

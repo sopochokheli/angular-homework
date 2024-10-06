@@ -3,10 +3,11 @@ import {
   addDoc,
   collection,
   CollectionReference,
-  deleteDoc, doc,
+  deleteDoc,
+  doc,
   Firestore,
   getDocs,
-  query,
+  query, updateDoc,
   where
 } from '@angular/fire/firestore';
 
@@ -17,6 +18,7 @@ export class AccountsService {
   private accountsCollection: CollectionReference;
   accountCreated = new EventEmitter<number>();
   accountDeleted = new EventEmitter<number>();
+  transferCompleted = new EventEmitter<number>();
 
   constructor(private firestore: Firestore) {
     this.accountsCollection = collection(this.firestore, 'accounts');
@@ -78,6 +80,49 @@ export class AccountsService {
     } catch (error) {
       console.error('Error deleting account:', error);
       throw error; // Rethrow or handle the error as needed
+    }
+  }
+
+  async getAllAccounts(clientId: string): Promise<any[]> {
+    const accounts: any[] = [];
+    try {
+      const q = query(this.accountsCollection, where('clientId', '!=', clientId));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        accounts.push({id: doc.id, ...doc.data()});
+      });
+      return accounts;
+    } catch (error) {
+      console.error('Error fetching accounts:', error);
+      return [];
+    }
+  }
+
+  async transferFunds(senderAccount: any, receiverAccount: any, amount: number): Promise<void> {
+    try {
+      const senderDocRef = doc(this.firestore, 'accounts', senderAccount.id);
+      const receiverDocRef = doc(this.firestore, 'accounts', receiverAccount.id);
+
+      if (senderAccount.amount < amount) {
+        throw new Error('Insufficient balance in sender account');
+      }
+
+      const newSenderBalance = senderAccount.amount - amount;
+      const newReceiverBalance = receiverAccount.amount + amount;
+
+      await updateDoc(senderDocRef, { amount: newSenderBalance });
+      await updateDoc(receiverDocRef, { amount: newReceiverBalance });
+
+      console.log('Transfer successful:', {
+        senderAccountId: senderAccount.id,
+        receiverAccountId: receiverAccount.id,
+        amount
+      });
+      this.transferCompleted.emit(amount);
+
+    } catch (error) {
+      console.error('Error during fund transfer:', error);
+      throw error;
     }
   }
 }

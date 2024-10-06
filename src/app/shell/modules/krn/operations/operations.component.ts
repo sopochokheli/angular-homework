@@ -14,6 +14,6 @@ export class OperationsComponent {
   }
 
   goToPmd311() {
-    this.router.navigate(['/pmd/pmd311']);
+    this.router.navigate(['/pmd/pmd311'], {queryParamsHandling: 'preserve'});
   }
 }

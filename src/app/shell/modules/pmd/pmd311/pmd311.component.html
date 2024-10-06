@@ -11,7 +11,7 @@
           <select formControlName="carrierAccount" class="ui dropdown">
             <option value="">აირჩიეთ</option>
             <option *ngFor="let account of carrierAccounts" [value]="account.id">
-              {{ account.name }}
+              {{ account.id }} - {{ account.amount }}GEL ({{ account.accountName }})
             </option>
           </select>
           <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
@@ -27,7 +27,7 @@
           <select formControlName="receiverAccount" class="ui dropdown">
             <option value="">აირჩიეთ</option>
             <option *ngFor="let account of receiverAccounts" [value]="account.id">
-              {{ account.name }}
+              {{ account.id }} - {{ account.amount }}GEL ({{ account.accountName }})
             </option>
           </select>
           <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
