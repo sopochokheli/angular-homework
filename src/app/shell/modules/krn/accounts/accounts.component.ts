@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountsService} from './accounts.service';
-import { Account } from './account.model';
+import {Account} from './account.model';
 
 
 @Component({
@@ -18,6 +18,7 @@ export class AccountsComponent implements OnInit {
   accounts: Account[] = [];
   clientId: string | null = null;
 
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -26,23 +27,22 @@ export class AccountsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Get the clientId from query params or other method
     this.route.queryParamMap.subscribe(params => {
       this.clientId = params.get('clientId');
-      console.log('Client ID received:', this.clientId);
 
       if (this.clientId) {
-        // Fetch accounts for this clientId
-        this.fetchAccounts(this.clientId);
+        const clientName = params.get('clientName') || '';
+        this.fetchAccounts(this.clientId, clientName);
       }
     });
   }
 
-  // Method to fetch accounts for a specific clientId
-  fetchAccounts(clientId: string) {
+  fetchAccounts(clientId: string, clientName: string) {
     this.accountsService.getAccounts(clientId).then(accounts => {
-      console.log('accounts:', accounts);
-      this.accounts = accounts;
+      this.accounts = accounts.map(account => ({
+        ...account,
+        name: clientName
+      }));
     }).catch(error => {
       console.error('Error fetching accounts:', error);
     });
@@ -55,7 +55,6 @@ export class AccountsComponent implements OnInit {
 
         this.accountsService.deleteAccount(account.id).then(r => {
           this.accounts = this.accounts.filter(acc => acc.id !== account.id);
-          console.log('Account deleted successfully.');
         });
 
       } catch (error) {
@@ -65,7 +64,6 @@ export class AccountsComponent implements OnInit {
   }
 
   addAccount() {
-    console.log('Add account clicked');
     this.router.navigate(['/krn/accounts/create'], {queryParamsHandling: 'preserve'});
   }
 }

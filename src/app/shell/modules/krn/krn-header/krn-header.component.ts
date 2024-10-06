@@ -67,4 +67,11 @@ export class KrnHeaderComponent implements OnInit {
   navigateWithParams(route: string) {
     this.router.navigate([route], {queryParamsHandling: 'preserve'});
   }
+
+  navigateToAccounts(route: string) {
+    this.router.navigate([route], {
+      queryParams: {clientName: this.clientName},
+      queryParamsHandling: 'merge'
+    });
+  }
 }
