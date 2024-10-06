@@ -53,7 +53,7 @@ export class AccountsComponent implements OnInit {
     if (confirm('Are you sure you want to delete this account?')) {
       try {
 
-        this.accountsService.deleteAccount(account.id).then(r => {
+        this.accountsService.deleteAccount(account.id, account.amount).then(r => {
           this.accounts = this.accounts.filter(acc => acc.id !== account.id);
         });
 

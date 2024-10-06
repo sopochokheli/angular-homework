@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {ClientsService} from "../../bpm/clients.service";
+import {AccountsService} from "../accounts/accounts.service";
 
 @Component({
   selector: 'app-krn-header',
@@ -17,16 +18,15 @@ export class KrnHeaderComponent implements OnInit {
   clientId: string | null = null;
   clientName: string = "";
   plusPoints: number = 0;
+  totalAmount: number = 0;
 
-  constructor(private router: Router, private route: ActivatedRoute, private clientsService: ClientsService) {
+  constructor(private router: Router, private route: ActivatedRoute, private clientsService: ClientsService, private accountsService: AccountsService) {
   }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       this.clientId = params.get('clientId');
-      console.log('Client ID received:', this.clientId);
 
-      // Check if the data is already in localStorage
       const storedClientData = localStorage.getItem('clientData');
 
       if (storedClientData) {
@@ -35,13 +35,35 @@ export class KrnHeaderComponent implements OnInit {
         if (clientData.clientId == this.clientId) {
           this.clientName = clientData.clientName;
           this.plusPoints = clientData.plusPoints;
+          this.totalAmount = clientData.totalAmount;
         } else {
-          this.fetchClientDataFromService()
+          this.fetchClientDataFromService();
         }
       } else {
         this.fetchClientDataFromService();
+        this.fetchTotalAmount();
       }
+
+      this.accountsService.accountCreated.subscribe((amount: number) => {
+        this.totalAmount += amount;
+        this.updateLocalStorage();
+      });
+
+      this.accountsService.accountDeleted.subscribe((amount: number) => {
+        this.totalAmount -= amount;
+        this.updateLocalStorage();
+      });
     });
+  }
+
+  updateLocalStorage() {
+    const storedClientData = {
+      clientId: this.clientId,
+      clientName: this.clientName,
+      plusPoints: this.plusPoints,
+      totalAmount: this.totalAmount
+    };
+    localStorage.setItem('clientData', JSON.stringify(storedClientData));
   }
 
   fetchClientDataFromService() {
@@ -49,12 +71,21 @@ export class KrnHeaderComponent implements OnInit {
       this.clientName = document?.['firstName'] + ' ' + document?.['lastName'];
       this.plusPoints = document?.['plusPoints'];
 
-      // Store in localStorage
+      this.updateLocalStorage()
+    });
+  }
+
+  fetchTotalAmount() {
+    this.accountsService.getAccountsAmount(this.clientId ?? "").then(totalAmount => {
+      this.totalAmount = totalAmount;
+
+      const storedClientData = JSON.parse(localStorage.getItem('clientData') ?? '{}');
       localStorage.setItem('clientData', JSON.stringify({
-        clientId: this.clientId,
-        clientName: this.clientName,
-        plusPoints: this.plusPoints
+        ...storedClientData,
+        totalAmount: this.totalAmount
       }));
+    }).catch(error => {
+      console.error('Error fetching account amounts:', error);
     });
   }
 

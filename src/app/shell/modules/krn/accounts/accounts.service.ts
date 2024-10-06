@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {
   addDoc,
   collection,
@@ -15,6 +15,8 @@ import {
 })
 export class AccountsService {
   private accountsCollection: CollectionReference;
+  accountCreated = new EventEmitter<number>();
+  accountDeleted = new EventEmitter<number>();
 
   constructor(private firestore: Firestore) {
     this.accountsCollection = collection(this.firestore, 'accounts');
@@ -27,7 +29,7 @@ export class AccountsService {
         accountName: accountName,
         amount: amount
       });
-      console.log('Account added successfully!');
+      this.accountCreated.emit(amount);
     } catch (error) {
       console.error('Error adding account:', error);
     }
@@ -48,11 +50,31 @@ export class AccountsService {
     }
   }
 
-  async deleteAccount(accountId: string): Promise<void> {
+  async getAccountsAmount(clientId: string): Promise<number> {
+
+    let totalAmount = 0;
+    try {
+      const q = query(this.accountsCollection, where('clientId', '==', clientId));
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        const accountData = doc.data();
+        totalAmount += accountData['amount'] || 0;
+      });
+
+      return totalAmount;
+    } catch (error) {
+      console.error('Error fetching accounts:', error);
+      return 0;
+    }
+  }
+
+
+  async deleteAccount(accountId: string, amount: number): Promise<void> {
     try {
       const accountRef = doc(this.firestore, `accounts/${accountId}`);
       await deleteDoc(accountRef);
-      console.log(`Account with ID ${accountId} has been deleted.`);
+      this.accountDeleted.emit(amount);
     } catch (error) {
       console.error('Error deleting account:', error);
       throw error; // Rethrow or handle the error as needed
