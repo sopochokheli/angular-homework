@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
-import {RouterModule, RouterOutlet} from "@angular/router";
+import {Component} from '@angular/core';
+import {RouterOutlet} from "@angular/router";
 import {AuthFormFieldComponent} from "../auth-form-field/auth-form-field.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {IRegisterForm} from "../register/register-form";
 import {ILoginForm} from "./login-form";
 import {AuthButtonFieldComponent} from "../auth-button-field/auth-button-field.component";
 import {CompanyLogoComponent} from "../company-logo/company-logo.component";
@@ -27,7 +26,8 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+  }
 
   onSubmit() {
     console.log('Form submitted:', this.loginForm.value)

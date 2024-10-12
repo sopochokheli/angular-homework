@@ -1,9 +1,12 @@
-<div class="register-container">
-  <div class="photo-container">
-    <img src="assets/bank-11.jpg" alt="Company Photo" class="company-photo">
-    <div class="photo-overlay"></div>
+<div class="ui grid">
+  <div class="twelve wide column ">
+      <img ngSrc="assets/bank-11.jpg" alt="Company Photo" class="ui image company-photo" height="1080" width="1920">
+      <div class="photo-overlay"></div>
   </div>
-  <div class="register-form">
-    <router-outlet></router-outlet>
+
+  <div class="four wide column center aligned" style="margin-top: 15px;">
+    <div class="ui segment">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

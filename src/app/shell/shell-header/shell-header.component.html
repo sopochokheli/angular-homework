@@ -1,28 +1,30 @@
-<header class="main-header">
-  <div class="logo">
-    <img src="assets/bank-logo-v2.png" alt="Company Logo">
+<header class="ui menu main-header">
+  <div class="header item">
+    <img ngSrc="assets/bank-logo-v2.png" alt="Company Logo" class="ui image" height="30" width="150">
   </div>
 
-  <div class="header-icons">
-    <!-- Search Button and Input -->
-    <div class="search-container">
-      <div class="search-box">
-        <input type="text" class="search-input" placeholder="Search..."/>
-        <button class="icon-button search-btn" (click)="toggleSearch()">
-          <i class="fas fa-search"></i>
-        </button>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search icon" (click)="toggleSearch()"></i>
       </div>
     </div>
 
-    <!-- Other Header Buttons -->
-    <button class="icon-button" (click)="onLanguageChange()">
-      <i class="fas fa-sign-language"></i>
-    </button>
-    <button class="icon-button" (click)="onNotificationClick()">
-      <i class="fas fa-bell"></i>
-    </button>
-    <button class="icon-button" (click)="onLogOutClick()">
-      <i class="fas fa-sign-out-alt"></i>
-    </button>
+    <div class="item">
+      <button class="ui icon button" (click)="onNotificationClick()">
+        <i class="sign language icon"></i>
+      </button>
+    </div>
+    <div class="item">
+      <button class="ui icon button" (click)="onNotificationClick()">
+        <i class="bell icon"></i>
+      </button>
+    </div>
+    <div class="item">
+      <button class="ui icon button" (click)="onLogOutClick()">
+        <i class="sign-out icon"></i>
+      </button>
+    </div>
   </div>
 </header>

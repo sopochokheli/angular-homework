@@ -1,42 +1,42 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <app-company-logo></app-company-logo>
-    <app-auth-form-field
-      iconClass="fas fa-user"
-      type="text"
-      placeholder="მომხმარებელი"
-      fieldId="username"
-      [control]="registerForm.controls['username']">
-    </app-auth-form-field>
+<form class="ui form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <app-company-logo></app-company-logo>
+  <app-auth-form-field
+    iconClass="user icon"
+    type="text"
+    placeholder="მომხმარებელი"
+    fieldId="username"
+    [control]="registerForm.controls['username']">
+  </app-auth-form-field>
 
-    <app-auth-form-field
-      iconClass="fas fa-id-badge"
-      type="text"
-      placeholder="სახელი"
-      fieldId="name"
-      [control]="registerForm.controls['name']">
-    </app-auth-form-field>
+  <app-auth-form-field
+    iconClass="id card icon"
+    type="text"
+    placeholder="სახელი"
+    fieldId="name"
+    [control]="registerForm.controls['name']">
+  </app-auth-form-field>
 
-    <app-auth-form-field
-      iconClass="fas fa-lock"
-      type="password"
-      placeholder="პაროლი"
-      fieldId="password"
-      [control]="registerForm.controls['password']">
-    </app-auth-form-field>
+  <app-auth-form-field
+    iconClass="lock icon"
+    type="password"
+    placeholder="პაროლი"
+    fieldId="password"
+    [control]="registerForm.controls['password']">
+  </app-auth-form-field>
 
-    <app-auth-form-field
-      iconClass="fas fa-lock"
-      type="password"
-      placeholder="განმეორებითი პაროლი"
-      fieldId="confirmPassword"
-      [control]="registerForm.controls['confirmPassword']">
-    </app-auth-form-field>
+  <app-auth-form-field
+    iconClass="redo icon"
+    type="password"
+    placeholder="განმეორებითი პაროლი"
+    fieldId="confirmPassword"
+    [control]="registerForm.controls['confirmPassword']">
+  </app-auth-form-field>
 
-   <app-auth-button-field
+  <app-auth-button-field
     href="/auth"
     hrefText="შესვლა"
     [disabled]="registerForm.invalid"
     submitText="რეგისტრაცია"
     iconClass="fas fa-user-plus">
-   </app-auth-button-field>
+  </app-auth-button-field>
 </form>

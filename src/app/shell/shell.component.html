@@ -1,10 +1,22 @@
-<div class="app-shell">
-  <app-shell-header></app-shell-header> <!-- Header -->
+<div class="ui grid">
+  <!-- Header -->
+  <div class="row">
+    <div class="sixteen wide column">
+      <app-shell-header class=""></app-shell-header>
+    </div>
+  </div>
 
-  <div class="content-wrapper">
-    <app-shell-sidebar></app-shell-sidebar> <!-- Sidebar -->
-    <div class="module-content">
-      <router-outlet></router-outlet> <!-- Dynamic module content will be rendered here -->
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="three wide column">
+      <app-shell-sidebar class="ui vertical menu" [username]="username"></app-shell-sidebar>
+    </div>
+
+    <!-- Main Content -->
+    <div class="thirteen wide column">
+      <div class="ui">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

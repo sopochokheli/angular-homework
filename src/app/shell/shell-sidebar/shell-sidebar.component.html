@@ -1,19 +1,15 @@
-<div class="sidebar">
-  <div class="profile">
-    <div class="background">
-      <img class="background-img" [src]="backgroundImageUrl" alt="Background Image">
-    </div>
-    <div class="profile-details">
-      <img class="profile-pic" [src]="profileImageUrl" alt="Profile Picture">
-      <div class="user-info">
-        <div class="username">{{ username }}</div>
-        <div class="status">{{ status }}</div>
-      </div>
-    </div>
+<!-- Profile Section -->
+<div class="item profile-section">
+  <div class="ui medium image background-container">
+    <img [src]="backgroundImageUrl" alt="Background Image" class="background-img">
   </div>
-  <div class="nav">
-    <a routerLink="/bpm/bpm000" routerLinkActive="active" class="nav-item">
-      <i class="fa fa-home"></i> მთავარი
-    </a>
+  <div class="profile-details">
+    <img [src]="profileImageUrl" alt="Profile Picture" class="ui avatar image profile-avatar">
+    <div class="content user-info">
+      <div class="header">{{ username }}</div>
+    </div>
   </div>
 </div>
+<a routerLink="/bpm/bpm000" routerLinkActive="active" class="item">
+  <i class="home icon"></i> მთავარი
+</a>

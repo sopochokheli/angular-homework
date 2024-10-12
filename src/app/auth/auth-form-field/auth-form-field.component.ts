@@ -55,7 +55,6 @@ export class AuthFormFieldComponent implements ControlValueAccessor {
     if (this.control.hasError('minlength')) {
       return `მინიმუმ ${this.control.errors?.['minlength']?.requiredLength} სიგრძის`;
     }
-    // Add more error handling as needed
     return '';
   }
 }

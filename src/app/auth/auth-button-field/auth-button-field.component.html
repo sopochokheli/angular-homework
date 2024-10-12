@@ -1,8 +1,15 @@
-<div class="form-group-button">
-  <a [href]="href" class="login-link">{{hrefText}}</a>
+<div class="ui grid header">
+  <div class="row">
 
-  <button type="submit" [disabled]="disabled" class="btn-submit">
-    <i [class]="iconClass"></i>
-    {{submitText}}
-  </button>
+    <div class="left aligned four wide column">
+      <a [href]="href" class="ui link">{{ hrefText }}</a>
+    </div>
+
+    <div class="right aligned twelve wide column">
+      <button type="submit" [disabled]="disabled" class="ui button" [ngClass]="{'disabled': disabled}">
+        <i [class]="iconClass"></i>
+        {{ submitText }}
+      </button>
+    </div>
+  </div>
 </div>

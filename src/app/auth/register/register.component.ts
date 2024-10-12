@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {IRegisterForm} from "./register-form";
 import {NgOptimizedImage} from "@angular/common";
@@ -28,26 +28,27 @@ export class RegisterComponent {
     confirmPassword: new FormControl('', [Validators.required]),
   });
 
-  constructor(private authService: AuthService) {} // Inject AuthService
+  constructor(private authService: AuthService) {
+  }
 
   passwordMatchValidator(group: FormGroup<IRegisterForm>): any {
     const password = this.registerForm?.get('password')?.value;
     const confirmPassword = this.registerForm?.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { notMatching: true };
+    return password === confirmPassword ? null : {notMatching: true};
   }
 
-  async onSubmit() { // Add async keyword here
+  async onSubmit() {
     if (this.registerForm.valid) {
       console.log("log all", this.registerForm)
-      const { username, password, name } = this.registerForm.value; // Get username, password, and name from the form
+      const {username, password, name} = this.registerForm.value;
 
       try {
-        // Use nullish coalescing to ensure values are treated as strings
+
         await this.authService.signUp(
-          username ?? "", // Provide a default empty string
-          password ?? "", // Provide a default empty string
-          name ?? "" // Provide a default empty string
-        ); // Call the signUp method
+          username ?? "",
+          password ?? "",
+          name ?? ""
+        );
       } catch (error) {
         console.error('Registration error:', error);
       }

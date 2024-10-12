@@ -1,45 +1,7 @@
-.app-shell {
+.ui.vertical.menu {
+  width: 250px;
+  background-color: #f4f4f4;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  /* Header at the top spanning the full width */
-  app-shell-header {
-    height: 60px; /* Adjust height of the header */
-    background-color: #ffffff;
-    width: 100%; /* Full width header */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow */
-  }
-
-  /* Content wrapper to hold sidebar and main content */
-  .content-wrapper {
-    display: flex;
-    margin-top: 60px; /* Offset to push content below the fixed header */
-    height: calc(100vh - 60px); /* Full height minus the header */
-  }
-
-  /* Sidebar on the left, under the header */
-  app-shell-sidebar {
-    width: 250px; /* Width of the sidebar */
-    background-color: #f4f4f4;
-    height: calc(100vh - 60px); /* Full height minus the header */
-    position: relative;
-    top: 0;
-    left: 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Main content area next to the sidebar */
-  .module-content {
-    flex-grow: 1;
-    padding: 20px;
-    margin-top: 1rem;
-    overflow-y: auto; /* Scrollable content if it overflows */
-    background-color: #f9f9f9;
-    height: calc(100vh - 60px); /* Full height minus the header */
-  }
+  margin-top: -20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
