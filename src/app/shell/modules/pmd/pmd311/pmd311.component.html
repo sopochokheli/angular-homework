@@ -6,7 +6,7 @@
       <form class="ui form" [formGroup]="pmdForm" (ngSubmit)="onSubmit()">
 
         <div class="field">
-          <label>გადამზიდი ანგარიში</label>
+          <label>ანაგარიში</label>
           <select formControlName="carrierAccount" class="ui dropdown">
             <option value="">აირჩიეთ</option>
             <option *ngFor="let account of carrierAccounts" [value]="account.id">
@@ -15,11 +15,12 @@
           </select>
           <div *ngIf="pmdForm.get('carrierAccount')?.invalid && pmdForm.get('carrierAccount')?.touched"
                class="ui red message">
-            გთხოვთ აირჩიოთ გადამზიდი ანგარიში
+            <div *ngIf="pmdForm.get('carrierAccount')?.errors?.['requiredField']">
+              {{ pmdForm.get('carrierAccount')?.errors?.['requiredField'] }}
+            </div>
           </div>
         </div>
 
-        <!-- Receiver Account Dropdown -->
         <div class="field">
           <label>მიმღები ანგარიში</label>
           <select formControlName="receiverAccount" class="ui dropdown">
@@ -30,16 +31,22 @@
           </select>
           <div *ngIf="pmdForm.get('receiverAccount')?.invalid && pmdForm.get('receiverAccount')?.touched"
                class="ui red message">
-            გთხოვთ აირჩიოთ მიმღები ანგარიში
+            <div *ngIf="pmdForm.get('receiverAccount')?.errors?.['requiredField']">
+              {{ pmdForm.get('receiverAccount')?.errors?.['requiredField'] }}
+            </div>
           </div>
         </div>
 
-        <!-- Amount Field -->
         <div class="field">
           <label>თანხა</label>
           <input type="number" formControlName="amount" placeholder="თანხა">
           <div *ngIf="pmdForm.get('amount')?.invalid && pmdForm.get('amount')?.touched" class="ui red message">
-            გთხოვთ შეიყვანოთ სწორი თანხა
+            <div *ngIf="pmdForm.get('amount')?.errors?.['requiredField']">
+              {{ pmdForm.get('amount')?.errors?.['requiredField'] }}
+            </div>
+            <div *ngIf="pmdForm.get('amount')?.errors?.['minNumber']">
+              {{ pmdForm.get('amount')?.errors?.['minNumber'] }}
+            </div>
           </div>
         </div>
 

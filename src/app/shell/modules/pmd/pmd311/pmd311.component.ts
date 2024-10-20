@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {AccountsService} from "../../krn/accounts/accounts.service";
+import {ValidatorsService} from "../../../../validators.service";
 
 @Component({
   selector: 'app-pmd311',
@@ -24,15 +25,16 @@ export class Pmd311Component implements OnInit {
 
   constructor(
     private accountsService: AccountsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private validatorsService: ValidatorsService
   ) {
   }
 
   ngOnInit(): void {
     this.pmdForm = new FormGroup({
-      carrierAccount: new FormControl('', Validators.required),
-      receiverAccount: new FormControl('', Validators.required),
-      amount: new FormControl('', [Validators.required, Validators.min(1)])
+      carrierAccount: new FormControl('', this.validatorsService.requiredFieldValidator('ანგარიში')),
+      receiverAccount: new FormControl('', this.validatorsService.requiredFieldValidator('მიმღები ანგარიში')),
+      amount: new FormControl('', [this.validatorsService.requiredFieldValidator('თანხა'), this.validatorsService.minNumberValidator(1)])
     });
 
     this.route.queryParamMap.subscribe(params => {
