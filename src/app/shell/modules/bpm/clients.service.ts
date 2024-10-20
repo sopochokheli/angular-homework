@@ -51,12 +51,12 @@ export class ClientsService {
 
     if (firstName) {
       queryConstraints.push(where('firstName', '>=', firstName));
-      queryConstraints.push(where('firstName', '<=', firstName + '\uf8ff')); // For prefix matching
+      queryConstraints.push(where('firstName', '<=', firstName + '\uf8ff'));
     }
 
     if (lastName) {
       queryConstraints.push(where('lastName', '>=', lastName));
-      queryConstraints.push(where('lastName', '<=', lastName + '\uf8ff')); // For prefix matching
+      queryConstraints.push(where('lastName', '<=', lastName + '\uf8ff'));
     }
 
     const queryRef = query(collection(this.firestore, 'clients'), ...queryConstraints);

@@ -17,15 +17,14 @@ import {ClientsService} from "../clients.service";
 })
 export class Bpm000Component implements OnInit {
   clientSearchForm: FormGroup = new FormGroup({});
-  clients: any[] = []; // Full list of clients
-  filteredClients: any[] = []; // Filtered clients to display in the table
-  searchPerformed = false; // Flag to check if search was performed
+  clients: any[] = [];
+  filteredClients: any[] = [];
+  searchPerformed = false;
 
   constructor(private router: Router, private clientsService: ClientsService) {
   }
 
   ngOnInit(): void {
-    // Initialize the reactive form
     this.clientSearchForm = new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
@@ -36,7 +35,6 @@ export class Bpm000Component implements OnInit {
   async onSubmit() {
     const {firstName, lastName, clientId} = this.clientSearchForm.value;
 
-    // Set searchPerformed to true when form is submitted
     this.searchPerformed = true;
 
     try {
@@ -44,7 +42,7 @@ export class Bpm000Component implements OnInit {
       console.log('filtered clients', this.filteredClients);
     } catch (error) {
       console.error('Error fetching clients:', error);
-      this.filteredClients = []; // Clear filtered clients on error
+      this.filteredClients = [];
     }
   }
 

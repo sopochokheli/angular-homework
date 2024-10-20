@@ -84,6 +84,6 @@ export const routes: Routes = [{
       }]
   },
 
-  {path: '', redirectTo: '/auth', pathMatch: 'full'}, // Default to login
-  {path: '**', redirectTo: '/auth'}, // Wildcard route for handling 404s
+  {path: '', redirectTo: '/auth', pathMatch: 'full'},
+  {path: '**', redirectTo: '/auth'},
 ];

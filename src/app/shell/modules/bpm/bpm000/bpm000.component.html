@@ -3,23 +3,20 @@
 
   <div class="ui grid">
     <div class="sixteen wide column">
-      <!-- Bind the form to the FormGroup (Reactive Form) -->
       <form class="ui form" [formGroup]="clientSearchForm" (ngSubmit)="onSubmit()">
         <div class="ui three fields">
 
-          <!-- First Name Field (სახელი) -->
           <div class="field">
             <label>სახელი</label>
             <input type="text" formControlName="firstName" placeholder="სახელი">
           </div>
 
-          <!-- Last Name Field (გვარი) -->
+
           <div class="field">
             <label>გვარი</label>
             <input type="text" formControlName="lastName" placeholder="გვარი">
           </div>
 
-          <!-- Client Unique ID Field (კლიენტის უნიკალური ID) -->
           <div class="field">
             <label>კლიენტის უნიკალური ID</label>
             <input type="text" formControlName="clientId" placeholder="კლიენტის უნიკალური ID">
@@ -34,21 +31,18 @@
     </div>
   </div>
 
-  <!-- Only show the client table if search has been performed -->
   <div class="ui segment" *ngIf="searchPerformed">
     <div class="ui grid">
       <div class="twelve wide column">
         <h3 class="ui header">კლიენტები</h3>
       </div>
       <div class="four wide column right aligned">
-        <!-- Plus Button -->
         <button class="ui grey icon button" (click)="goToAddClient()">
           <i class="plus icon"></i>
         </button>
       </div>
     </div>
 
-    <!-- Clients Table with Hover Animation and Clickable Rows -->
     <table class="ui celled table">
       <thead>
       <tr>

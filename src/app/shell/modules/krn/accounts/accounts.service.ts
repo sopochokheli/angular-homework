@@ -7,7 +7,8 @@ import {
   doc,
   Firestore,
   getDocs,
-  query, updateDoc,
+  query,
+  updateDoc,
   where
 } from '@angular/fire/firestore';
 
@@ -79,7 +80,7 @@ export class AccountsService {
       this.accountDeleted.emit(amount);
     } catch (error) {
       console.error('Error deleting account:', error);
-      throw error; // Rethrow or handle the error as needed
+      throw error;
     }
   }
 
@@ -110,14 +111,9 @@ export class AccountsService {
       const newSenderBalance = senderAccount.amount - amount;
       const newReceiverBalance = receiverAccount.amount + amount;
 
-      await updateDoc(senderDocRef, { amount: newSenderBalance });
-      await updateDoc(receiverDocRef, { amount: newReceiverBalance });
+      await updateDoc(senderDocRef, {amount: newSenderBalance});
+      await updateDoc(receiverDocRef, {amount: newReceiverBalance});
 
-      console.log('Transfer successful:', {
-        senderAccountId: senderAccount.id,
-        receiverAccountId: receiverAccount.id,
-        amount
-      });
       this.transferCompleted.emit(amount);
 
     } catch (error) {

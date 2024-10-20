@@ -32,7 +32,12 @@
             <input type="number" formControlName="plusPoints" placeholder="Plus ქულები">
             <div *ngIf="clientForm.get('plusPoints')?.invalid && clientForm.get('plusPoints')?.touched"
                  class="ui red message">
-              გთხოვთ შეიყვანოთ სწორი ქულა
+              <div *ngIf="clientForm.get('plusPoints')?.errors?.['requiredField']">
+                {{ clientForm.get('plusPoints')?.errors?.['requiredField'] }}
+              </div>
+              <div *ngIf="clientForm.get('plusPoints')?.errors?.['minNumber']">
+                {{ clientForm.get('plusPoints')?.errors?.['minNumber'] }}
+              </div>
             </div>
           </div>
 

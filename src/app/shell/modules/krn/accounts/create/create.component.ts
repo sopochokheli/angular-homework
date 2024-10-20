@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {AccountsService} from "../accounts.service";
-import {Account} from "../account.model";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -22,7 +21,8 @@ export class CreateComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private accountsService: AccountsService  ) {}
+              private accountsService: AccountsService) {
+  }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -39,12 +39,9 @@ export class CreateComponent implements OnInit {
     if (this.createAccountForm.valid && this.clientId) {
       const newAccount = this.createAccountForm.value;
 
-      // Call AccountsService to add the new account
       this.accountsService.addAccount(this.clientId, newAccount.accountName, newAccount.amount)
         .then(() => {
-          console.log('Account created successfully');
-          // Redirect to accounts list after saving
-          this.router.navigate(['/krn/accounts'], { queryParamsHandling: 'preserve' });
+          this.router.navigate(['/krn/accounts'], {queryParamsHandling: 'preserve'});
         })
         .catch(error => {
           console.error('Error creating account:', error);
