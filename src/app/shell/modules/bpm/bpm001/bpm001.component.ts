@@ -20,11 +20,11 @@ export class Bpm001Component implements OnInit {
 
   ngOnInit(): void {
     this.clientForm = new FormGroup({
-      firstName: new FormControl('', Validators.required), // სახელი
-      lastName: new FormControl('', Validators.required),  // გვარი
+      firstName: new FormControl('', this.validatorsService.requiredFieldValidator('სახელი', 2, 30)), // სახელი
+      lastName: new FormControl('', this.validatorsService.requiredFieldValidator('გვარი', 2, 30)),  // გვარი
       plusPoints: new FormControl('', [
         this.validatorsService.minNumberValidator(0),
-        this.validatorsService.requiredFieldValidator('plusPoints')
+        this.validatorsService.requiredFieldValidator('პლუს ქულა')
       ]) // Plus ქულები
     });
   }

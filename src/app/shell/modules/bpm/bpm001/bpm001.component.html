@@ -3,7 +3,6 @@
   <div class="ui segment">
     <div class="ui grid">
       <div class="sixteen wide column">
-        <!-- Bind the form to the FormGroup (Reactive Form) -->
         <form class="ui form" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
           <!-- First Name Field (სახელი) -->
@@ -12,7 +11,12 @@
             <input type="text" formControlName="firstName" placeholder="სახელი">
             <div *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched"
                  class="ui red message">
-              გთხოვთ შეიყვანოთ სახელი
+              <div *ngIf="clientForm.get('firstName')?.errors?.['requiredField']">
+                {{ clientForm.get('firstName')?.errors?.['requiredField'] }}
+              </div>
+              <div *ngIf="clientForm.get('firstName')?.errors?.['lengthError']">
+                {{ clientForm.get('firstName')?.errors?.['lengthError'] }}
+              </div>
             </div>
           </div>
 
@@ -22,7 +26,12 @@
             <input type="text" formControlName="lastName" placeholder="გვარი">
             <div *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched"
                  class="ui red message">
-              გთხოვთ შეიყვანოთ გვარი
+              <div *ngIf="clientForm.get('lastName')?.errors?.['requiredField']">
+                {{ clientForm.get('lastName')?.errors?.['requiredField'] }}
+              </div>
+              <div *ngIf="clientForm.get('lastName')?.errors?.['lengthError']">
+                {{ clientForm.get('lastName')?.errors?.['lengthError'] }}
+              </div>
             </div>
           </div>
 

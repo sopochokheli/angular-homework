@@ -5,7 +5,6 @@
     <div class="ten wide column">
       <form class="ui form" [formGroup]="pmdForm" (ngSubmit)="onSubmit()">
 
-        <!-- Carrier Account Dropdown -->
         <div class="field">
           <label>გადამზიდი ანგარიში</label>
           <select formControlName="carrierAccount" class="ui dropdown">
@@ -14,7 +13,6 @@
               {{ account.id }} - {{ account.amount }}GEL ({{ account.accountName }})
             </option>
           </select>
-          <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
           <div *ngIf="pmdForm.get('carrierAccount')?.invalid && pmdForm.get('carrierAccount')?.touched"
                class="ui red message">
             გთხოვთ აირჩიოთ გადამზიდი ანგარიში
@@ -30,7 +28,6 @@
               {{ account.id }} - {{ account.amount }}GEL ({{ account.accountName }})
             </option>
           </select>
-          <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
           <div *ngIf="pmdForm.get('receiverAccount')?.invalid && pmdForm.get('receiverAccount')?.touched"
                class="ui red message">
             გთხოვთ აირჩიოთ მიმღები ანგარიში
@@ -41,7 +38,6 @@
         <div class="field">
           <label>თანხა</label>
           <input type="number" formControlName="amount" placeholder="თანხა">
-          <!-- Use optional chaining to check 'invalid' and 'touched' safely -->
           <div *ngIf="pmdForm.get('amount')?.invalid && pmdForm.get('amount')?.touched" class="ui red message">
             გთხოვთ შეიყვანოთ სწორი თანხა
           </div>

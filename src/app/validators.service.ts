@@ -20,17 +20,10 @@ export class ValidatorsService {
 
       if (isString) {
         if (value.length < minLength) {
-          return {minLength: `${fieldName} უნდა იყოს მინიმუმ ${minLength} სიმბოლოების სიგრძის`};
+          return {lengthError: `${fieldName} უნდა იყოს მინიმუმ ${minLength} სიმბოლოების სიგრძის`};
         }
         if (value.length > maxLength) {
-          return {maxLength: `${fieldName} უნდა იყოს მაქსიმუმ ${maxLength} სიმბოლოების სიგრძის`};
-        }
-      } else if (isNumber) {
-        if (value < minLength) {
-          return {minLength: `${fieldName} უნდა იყოს მინიმუმ ${minLength}`};
-        }
-        if (value > maxLength) {
-          return {maxLength: `${fieldName} უნდა იყოს მაქსიმუმ ${maxLength}`};
+          return {lengthError: `${fieldName} უნდა იყოს მაქსიმუმ ${maxLength} სიმბოლოების სიგრძის`};
         }
       }
 
